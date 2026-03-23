@@ -2,94 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 224 46% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 224 46% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 224 46% 11%;
+    --primary: 252 100% 64%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 46% 11%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 80%;
+    --muted-foreground: 220 9% 60%;
+    --accent: 252 100% 64%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 25%;
+    --input: 220 13% 25%;
+    --ring: 252 100% 64%;
+    --radius: 0.75rem;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --navy: 224 46% 11%;
+    --navy-deep: 225 44% 7%;
+    --purple: 252 100% 64%;
+    --green: 142 76% 46%;
+    --amber: 38 92% 58%;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -98,8 +46,61 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
   }
+}
+
+@layer components {
+  .section-dark {
+    @apply bg-secondary text-secondary-foreground;
+  }
+  .section-white {
+    @apply bg-white text-secondary;
+  }
+  .section-padding {
+    @apply px-4 py-16 md:py-24 lg:py-32;
+  }
+  .container-narrow {
+    @apply mx-auto max-w-6xl;
+  }
+  .headline-mega {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black uppercase leading-[0.95] tracking-tight;
+    text-wrap: balance;
+  }
+  .headline-large {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.05] tracking-tight;
+    text-wrap: balance;
+  }
+  .eyebrow {
+    @apply text-xs md:text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground mb-4;
+  }
+  .cta-button {
+    @apply w-full bg-primary text-primary-foreground font-extrabold text-base md:text-lg py-4 md:py-5 px-8 rounded-lg 
+           transition-all duration-200 ease-out hover:brightness-110 active:scale-[0.97] 
+           cursor-pointer inline-block text-center no-underline;
+  }
+  .pill-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 
+           px-4 py-1.5 text-xs md:text-sm font-semibold text-primary;
+  }
+  .stat-value {
+    @apply text-3xl md:text-5xl font-black text-primary;
+  }
+  .stat-label {
+    @apply text-xs md:text-sm font-bold uppercase tracking-wider mt-1;
+  }
+  .stat-desc {
+    @apply text-xs text-muted-foreground mt-0.5;
+  }
+}
+
+/* Calendly embed custom container */
+.calendly-container {
+  max-width: 700px;
+  margin: 0 auto;
+  border: 1px solid hsl(var(--purple));
+  border-radius: 16px;
+  overflow: hidden;
 }
