@@ -29,6 +29,77 @@ function CTAButton({ text = "BOOK YOUR FREE STRATEGY CALL →" }: { text?: strin
 }
 
 /* ═══════════════════════════════════════════
+   LEAD CAPTURE FORM
+   ═══════════════════════════════════════════ */
+function LeadForm() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const body = `Name: ${data.get("name")}\nTrade: ${data.get("trade")}\nCity: ${data.get("city")}\nPhone: ${data.get("phone")}`;
+    window.location.href = `mailto:hello@ap-digital.ca?subject=Strategy Call Request - ${data.get("trade")} in ${data.get("city")}&body=${encodeURIComponent(body)}`;
+  };
+  return (
+    <section className="section-white section-padding">
+      <div className="container-narrow max-w-2xl">
+        <FadeUp>
+          <h2 className="headline-large text-secondary text-center">Get a Free Contractor Marketing Strategy Call</h2>
+        </FadeUp>
+        <FadeUp delay={0.1}>
+          <p className="text-center text-muted-foreground mt-3 mb-8 text-base md:text-lg">
+            No pressure. 20 minutes. We'll show you exactly how many leads are available in your area.
+          </p>
+        </FadeUp>
+        <FadeUp delay={0.15}>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              name="name"
+              type="text"
+              placeholder="Full Name"
+              required
+              className="w-full rounded-lg border border-secondary/20 bg-background px-4 py-3 text-secondary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base"
+            />
+            <select
+              name="trade"
+              required
+              className="w-full rounded-lg border border-secondary/20 bg-background px-4 py-3 text-secondary focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base"
+            >
+              <option value="" disabled selected>Trade Type</option>
+              <option>Plumber</option>
+              <option>Electrician</option>
+              <option>HVAC</option>
+              <option>Roofer</option>
+              <option>General Contractor</option>
+              <option>Landscaper</option>
+              <option>Other</option>
+            </select>
+            <input
+              name="city"
+              type="text"
+              placeholder="City in BC"
+              required
+              className="w-full rounded-lg border border-secondary/20 bg-background px-4 py-3 text-secondary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base"
+            />
+            <input
+              name="phone"
+              type="tel"
+              placeholder="Phone Number"
+              required
+              className="w-full rounded-lg border border-secondary/20 bg-background px-4 py-3 text-secondary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base"
+            />
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-extrabold py-4 text-base md:text-lg tracking-wide transition-colors duration-200"
+            >
+              Get My Free Strategy Call
+            </button>
+          </form>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════
    1. HERO
    ═══════════════════════════════════════════ */
 function Hero() {
@@ -359,29 +430,35 @@ function WhoThisIsFor() {
 function Testimonials() {
   const cards = [
     {
-      text: "I was skeptical — I'd been burned by two agencies before. Arjun actually knows what a job site looks like. The content feels authentic, the ads bring in homeowners who are ready to book, and I get to talk to him directly whenever I need.",
-      name: "Dave R.",
-      role: "General Contractor, Langley BC",
+      text: "We were struggling to get consistent work in the slower months. Within 3 weeks of running ads with AP Digital, we had 9 new leads for kitchen renos. Best decision we made.",
+      name: "Mike T.",
+      role: "General Contractor — Surrey, BC",
     },
     {
-      text: "47 leads in the first month. I don't know what else to say. Our Instagram went from zero to something we're proud to show homeowners. Arjun handles everything — I just show up on site and do the work.",
-      name: "Mike T.",
-      role: "Renovation Contractor, Surrey BC",
+      text: "Arjun actually picks up the phone and explains what's working. We've been month-to-month for 8 months now because the leads keep coming.",
+      name: "Raj P.",
+      role: "Plumber — Langley, BC",
+    },
+    {
+      text: "I was skeptical about paying for ads. AP Digital started us at $500/month and we made it back in the first job. Now we're at $1,200/month and fully booked.",
+      name: "David C.",
+      role: "Electrician — Burnaby, BC",
     },
   ];
   return (
     <section className="section-white section-padding">
       <div className="container-narrow">
         <FadeUp>
-          <h2 className="headline-large text-secondary text-center mb-10 md:mb-14">What clients are saying:</h2>
+          <h2 className="headline-large text-secondary text-center mb-10 md:mb-14">What BC Contractors Are Saying</h2>
         </FadeUp>
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {cards.map((c, i) => (
             <FadeUp key={i} delay={0.1 + i * 0.1}>
               <div className="rounded-2xl border border-secondary/10 bg-background p-6 md:p-8 border-t-4 border-t-primary shadow-sm">
                 <div className="text-primary text-lg mb-4">★★★★★</div>
                 <p className="text-secondary/80 text-sm md:text-base leading-relaxed mb-6">"{c.text}"</p>
-                <p className="font-bold text-secondary text-sm">— {c.name}, <span className="font-normal text-muted-foreground">{c.role}</span></p>
+                <p className="font-bold text-secondary text-sm">— {c.name}</p>
+                <p className="text-muted-foreground text-xs mt-1">{c.role}</p>
               </div>
             </FadeUp>
           ))}
@@ -508,13 +585,38 @@ function FinalCTA() {
 }
 
 /* ═══════════════════════════════════════════
+   CITIES WE SERVE
+   ═══════════════════════════════════════════ */
+function CitiesWeServe() {
+  return (
+    <section className="section-white section-padding">
+      <div className="container-narrow text-center max-w-3xl">
+        <FadeUp>
+          <h2 className="headline-large text-secondary">Contractor Marketing Across Metro Vancouver &amp; BC</h2>
+        </FadeUp>
+        <FadeUp delay={0.1}>
+          <p className="mt-4 text-muted-foreground text-base md:text-lg leading-relaxed">
+            AP Digital works with contractors in Surrey, Langley, Burnaby, Coquitlam, Abbotsford, Pitt Meadows, Maple Ridge, Port Coquitlam, New Westminster, and across BC.
+          </p>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════ */
 function Footer() {
   return (
-    <footer className="bg-navy-deep py-8 text-center text-muted-foreground text-xs md:text-sm">
+    <footer className="bg-navy-deep py-8 text-center text-muted-foreground text-xs md:text-sm space-y-2">
       <p>© 2026 AP Digital — Pitt Meadows, BC Canada</p>
-      <p className="mt-1">apdigital.core@gmail.com</p>
+      <p>hello@ap-digital.ca</p>
+      <p>
+        <a href="https://ap-digital.ca" className="underline hover:text-primary-foreground transition-colors duration-200">
+          ← Back to AP Digital | Full-Service Digital Marketing
+        </a>
+      </p>
     </footer>
   );
 }
@@ -544,16 +646,19 @@ export default function Index() {
   return (
     <div className="pb-14 md:pb-0">
       <Hero />
+      <LeadForm />
       <SocialProof />
       <ProblemSection />
       <ServicesSection />
+      <Testimonials />
       <LocationsSection />
       <OfferStack />
       <WhoThisIsFor />
-      <Testimonials />
       <FAQSection />
       <Guarantee />
       <FinalCTA />
+      <CitiesWeServe />
+      <LeadForm />
       <Footer />
       <MobileStickyBar />
     </div>
