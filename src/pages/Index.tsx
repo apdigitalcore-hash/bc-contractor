@@ -51,7 +51,7 @@ function Hero() {
 
         <FadeUp delay={0.1}>
           <h1 className="headline-mega text-primary-foreground mx-auto max-w-5xl">
-            YOUR COMPETITORS ARE GETTING JOBS FROM INSTAGRAM. YOU'RE NOT. YET.
+            BC Contractor Marketing — Get More Leads with Meta & Google Ads
           </h1>
         </FadeUp>
 
