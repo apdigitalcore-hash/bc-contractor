@@ -610,7 +610,7 @@ function CitiesWeServe() {
 function Footer() {
   return (
     <footer className="bg-navy-deep py-8 text-center text-muted-foreground text-xs md:text-sm space-y-2">
-      <p>© 2026 AP Digital — Pitt Meadows, BC Canada</p>
+      <p>© 2026 AP Digital — Vancouver, BC Canada</p>
       <p>apdigital.core@gmail.com</p>
       <p>
         <a href="https://ap-digital.ca" className="underline hover:text-primary-foreground transition-colors duration-200">
@@ -664,3 +664,4 @@ export default function Index() {
     </div>
   );
 }
+
